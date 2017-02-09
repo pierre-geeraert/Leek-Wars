@@ -1,0 +1,107 @@
+var enemy = getNearestEnemy();
+var armeenemy=getWeapon(enemy);//son arme
+var porte= getWeaponMaxRange(armeenemy);//sa porté
+global tour=0;//nbr tour
+var moi=getLeek();//mon poireau
+var tp = getTP();
+var tp3 = tp/3;
+var abstp3 = abs(tp3);
+var viemoi=getLife(moi);//ma vie
+var mac = getCell();//ma cellule
+var sac = getCell(getNearestEnemy());//sa cellule
+var distance = getCellDistance(mac, sac);//difference entre ennemi et moi
+var vie = getLife(enemy);//vie de l'ennemi
+var xcel = getCellX(mac);//coordonnées X ma cellule
+var ycel = getCellY(mac);//coordonnées Y ma cellule
+var xcelenemy = getCellX(sac);//coordonnées X sa cellule
+var ycelenemy = getCellY(sac);//coordonnées Y sa cellule
+var effets = getWeaponEffects(armeenemy);//donne effet de l'arme
+var x = xcel-xcelenemy;//
+var y = ycel-ycelenemy;//
+var vieprec;
+//analyser la rapidite de chute de vie pour prendre bouclier et/ou fuir
+// si sa vie est trop importante faire technique : flamme puis fuir
+// analyser nombre de pt pour utiliser armes puis comparer quel arme choisir en fct du degat occasioné par le nombre d utilisation
+if (tour == 0) {vieprec = viemoi;} 
+if (tour != 0) {
+	if (vieprec == viemoi){useChip(CHIP_CURE, moi);
+	vieprec = viemoi;}
+}	
+if (tour==0) {
+	setWeapon(WEAPON_DOUBLE_GUN);
+}
+//say(effets+"e");
+if ((vie/viemoi) >= 1.25) {
+	useChip(CHIP_SHIELD, moi);
+}
+if (viemoi <= vie and tour == 0) {
+	useChip(CHIP_PROTEIN, moi);
+}
+if (viemoi <= 100) { 
+	useChip(CHIP_CURE, moi);
+	setWeapon(WEAPON_MAGNUM);
+	useWeapon(enemy);
+	useWeapon(enemy);
+	}
+
+
+if (x == 0 or y == 0 and distance <= 7 and distance >= 3)  {
+	useChip(CHIP_FLASH, enemy);}
+if (armeenemy == 41 or armeenemy == 42 or armeenemy == 46 or armeenemy == 48 or armeenemy == 60 or armeenemy == 47) {
+	if (x == 0)   {
+		//moveAwayFromCell(getCell(enemy));
+		moveTowardCell(getCellFromXY(x+1, y));}
+	if (y == 0)   {
+		//moveAwayFromCell(getCell(enemy));
+		moveTowardCell(getCellFromXY(x, y+1));}
+}
+//se proteger de eclair
+if (armeenemy == 108 or armeenemy == 6 or armeenemy == 106) {//katana -hache -epee
+	if (distance <= 2) {
+	moveAwayFrom(enemy);
+	useWeapon(enemy);
+	useWeapon(enemy);}}
+if (distance >= 2 and distance <= 5) {
+		useChip(CHIP_ROCK, enemy);}
+if (distance >= 1 and distance <= 10) {
+		useChip(CHIP_FLAME, enemy);}		
+if (viemoi <= 100) { 
+	useChip(CHIP_CURE, moi);
+	setWeapon(WEAPON_MAGNUM);
+	useWeapon(enemy);
+	useWeapon(enemy);
+	
+	if (vie <= 30 and distance >= 2 and distance <= 5) {
+		useChip(CHIP_ROCK, enemy);
+	}
+	if (distance < porte) {//se degager de la porté si trop faible
+}}
+if (tp3-abs(tp3)!= 0 ) { 
+	//tiré=3tp 
+}
+
+
+//fonction qui s'eloigne de l'ennemi et le crame avec la flamme puis s'eloigne tout de suite
+function pute(x) 
+
+var distance = getCellDistance(mac, sac);//difference entre ennemi et moi
+
+	if (distance <= 7 and distance >= 2){//detection ennemy assez proche mais pas trop
+	var xxa =(x-x+1);
+	var yyz = 2;
+    debug(sqrt(xxa * xxa + yyz * yyz));
+    useChip(CHIP_FLAME, enemy);
+	moveAwayFrom(enemy);	
+	
+}
+}
+pute(1);
+useWeapon(enemy);
+moveToward(enemy); // on se rapproche
+useWeapon(enemy); // attaque
+useWeapon(enemy); // attaque
+useWeapon(enemy); // attaque
+
+tour++;
+
+
