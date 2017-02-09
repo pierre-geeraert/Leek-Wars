@@ -20,8 +20,12 @@ var x = xcel-xcelenemy;//
 var y = ycel-ycelenemy;//
 var vieprec;
 //analyser la rapidite de chute de vie pour prendre bouclier et/ou fuir
-// si sa vie est trop importante faire technique : flamme puis fuir
+// si la vie ne fais que chuter :fuir
 // analyser nombre de pt pour utiliser armes puis comparer quel arme choisir en fct du degat occasioné par le nombre d utilisation
+
+//begin{document}
+
+pute(distance,enemy);
 if (tour == 0) {vieprec = viemoi;} 
 if (tour != 0) {
 	if (vieprec == viemoi){useChip(CHIP_CURE, moi);
@@ -47,6 +51,7 @@ if (viemoi <= 100) {
 
 if (x == 0 or y == 0 and distance <= 7 and distance >= 3)  {
 	useChip(CHIP_FLASH, enemy);}
+	
 if (armeenemy == 41 or armeenemy == 42 or armeenemy == 46 or armeenemy == 48 or armeenemy == 60 or armeenemy == 47) {
 	if (x == 0)   {
 		//moveAwayFromCell(getCell(enemy));
@@ -61,6 +66,7 @@ if (armeenemy == 108 or armeenemy == 6 or armeenemy == 106) {//katana -hache -ep
 	moveAwayFrom(enemy);
 	useWeapon(enemy);
 	useWeapon(enemy);}}
+	
 if (distance >= 2 and distance <= 5) {
 		useChip(CHIP_ROCK, enemy);}
 if (distance >= 1 and distance <= 10) {
@@ -82,11 +88,12 @@ if (tp3-abs(tp3)!= 0 ) {
 
 
 //fonction qui s'eloigne de l'ennemi et le crame avec la flamme puis s'eloigne tout de suite
-function pute(x) 
+function pute(distance,enemy){
 
-var distance = getCellDistance(mac, sac);//difference entre ennemi et moi
 
-	if (distance <= 7 and distance >= 2){//detection ennemy assez proche mais pas trop
+
+	if (distance <= 6 and distance >= 2){//detection ennemy assez proche mais pas trop
+	var x=1;
 	var xxa =(x-x+1);
 	var yyz = 2;
     debug(sqrt(xxa * xxa + yyz * yyz));
@@ -95,7 +102,7 @@ var distance = getCellDistance(mac, sac);//difference entre ennemi et moi
 	
 }
 }
-pute(1);
+
 useWeapon(enemy);
 moveToward(enemy); // on se rapproche
 useWeapon(enemy); // attaque
