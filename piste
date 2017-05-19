@@ -1,0 +1,106 @@
+//><
+var enemy = getNearestEnemy();//donne ennemie le plus proche
+var tr = getTurn();
+//--------------------------------
+//------- Int(main) -----------
+//--------------------------------
+Debut();
+useWeaponBon(enemy);
+debug("tour "+getTurn());
+
+
+
+// On avance vers l'ennemi
+//moveToward(enemy);
+
+//recherche puces pour savoir s il y en a a distance pour savoir où tu te positionne
+
+//recherche armes pour savoir s il y a une trajectoire pour savoir où tu te positionne
+
+//utilise gettp pour pt tour et getchipcost pour savoir si tu peuc utiliser une arme ou chip et choisir quel chip en fct distance , cout et degat , calculer moyenne peut etre 
+
+//fonction qui indique si tu perd si la vie descend trop vite
+
+
+
+//-----------fonction useWeaponBon----------
+//fonction qui utilise l'arme si c'est possible
+//----------------------------------
+function useWeaponBon(enemy) {
+    if (canUseWeapon(enemy) == true) useWeapon(enemy);}
+//----------------------------------
+
+
+//-----------fonction setWeaponDebut----------
+//fonction qui met en place l'arme si c'est le premier tour
+//----------------------------------
+function Debut() {
+var vie_initiale;
+var vie_courante;
+    if (getTurn() == 1) {
+		vie_initiale= getLife();
+		debug(vie_initiale);
+		setWeapon(WEAPON_DOUBLE_GUN);
+		}
+if(getLife()!=vie_initiale){
+	if(getLife()> vie_initiale){//verifier si ta vie est pas uperieur a la vie courante car il y a les potions de vie //pas possible d etre superieur a la vie initiale
+	vie_courante=vie_initiale-getLife();
+	debug("vie courante= "+vie_courante);
+}
+}}
+//----------------------------------
+
+
+
+
+
+
+
+//----------------------------------
+//var tableauVie = [];
+	//push(tableauVie, getLife());
+	//debug(arrayFlatten(tableauVie));
+	//if (getTurn() !=1 ) {var nbrUn = shift(tableauVie);
+		//debug("nbrUn"+nbrUn);
+		//debug(sum("somme"+tableauVie));
+		//var nbrDeux = sum(tableauVie)-nbrUn;
+		//debug("nbrUn"+nbrDeux);}
+		
+		//deja essaye d affgicher vie n-1 puis vie n
+//----------------------------------
+
+//-----------fonction historicVie----------
+//fonction qui realise un historique des vies pour la fonction lose
+//----------------------------------
+//function historicVie() {
+	//var tableauVie = [];
+	//push(tableauVie, getLife());
+	//debug(arrayFlatten(tableauVie));
+	//}
+//----------------------------------
+
+
+//-----------fonction lose----------
+//fonction qui indique si tu perd
+//----------------------------------
+//function lose() {
+	//var tableauVie = [];
+	//push(tableauVie, getLife());
+	//debug(arrayFlatten(tableauVie));
+	//}
+//----------------------------------
+
+
+//-----------fonction searchChip----------
+//fonction qui indique puces ennemie et s'en eloigne si tu perd
+//----------------------------------
+//function searchChip(enemy) {
+	//getChips(enemy);
+    //}
+//----------------------------------
+
+
+
+
+
+

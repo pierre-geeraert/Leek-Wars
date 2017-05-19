@@ -1,0 +1,63 @@
+global tour=0;
+var i;
+global dit=0;
+var enemy = getNearestEnemy();
+var name=getName(enemy);
+var arme=getWeapon(enemy);
+
+
+if(getCellDistance(enemy, getCell()) <= ((getMP(getLeek()) + getMP(enemy))*3))    useChip(CHIP_HELMET, getLeek());
+
+
+if(tour==0)    setWeapon(WEAPON_MAGNUM);
+if(tour==1 && dit==0 || getWeapon(enemy)!=-1 && tour==0){
+    
+    dit=1;
+}
+
+var portee_enemy=getWeaponMaxRange(getWeapon(enemy));
+enemy = getNearestEnemy();
+
+if(portee_enemy>=getWeaponMaxRange(getWeapon())) moveToward(enemy);
+else    for (i = 1; i < 4; i++) if (getCellDistance(getCell(),getCell(enemy)) > 7) moveToward(enemy,1);
+
+useWeapon(enemy);
+useWeapon(enemy);
+
+if(getLife()<getLife(enemy) && getLife()<getTotalLife())    useChip(CHIP_BANDAGE, getLeek());
+useChip(CHIP_SPARK, enemy);
+
+
+if(getTP()>0){
+enemy = getNearestEnemy();
+portee_enemy=getWeaponMaxRange(getWeapon(enemy));
+
+if(portee_enemy>=getWeaponMaxRange(getWeapon())) moveToward(enemy);
+else    for (i = 1; i < 4; i++) if (getCellDistance(getCell(),getCell(enemy)) > 7) moveToward(enemy,1);
+
+useWeapon(enemy);
+useWeapon(enemy);
+if(getLife()<getLife(enemy) && getLife()<getTotalLife())    useChip(CHIP_BANDAGE, getLeek());
+useChip(CHIP_SPARK, enemy);
+}
+
+useChip(CHIP_SHOCK, enemy);
+useChip(CHIP_SHOCK, enemy);
+
+if(portee_enemy<getWeaponMaxRange(getWeapon()))    moveAwayFrom(enemy);
+
+if(getLife()<getTotalLife() && getLife(enemy)>0)    useChip(CHIP_BANDAGE, getLeek());
+
+name=getName(enemy);
+
+
+
+if (isDead(enemy)) {
+    setRegister(2 , 'win with pick up 1');
+} else {
+    setRegister(2 , 'dead with pick up 1');
+}
+debug(getRegisters());
+
+
+tour++;
