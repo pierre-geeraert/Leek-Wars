@@ -3,6 +3,7 @@ import os
 import requests
 from random import randint
 
+
 source_api_address = "https://leekwars.com/api/"
 
 
@@ -12,6 +13,10 @@ def readCredential(PathCredential_function, type):
     return data[type]
 
 
+def writeInFile(path_file,data):
+    with open(path_file, 'w') as file:
+        file.write(data)
+
 def TokenLeekwars(id_leek, passwd_leek):
     if os.path.isfile('./token.txt') == "True":
         file_token = open("token.txt", "r")
@@ -20,8 +25,9 @@ def TokenLeekwars(id_leek, passwd_leek):
         data_out_TokenLeekwars = requests.post("https://leekwars.com/api/farmer/login-token", data={'login': id_leek, 'password': passwd_leek})
 #        token = r.json()['token']
         token = data_out_TokenLeekwars.json()['token']
-        with open('token.txt', 'w') as file:
-            file.write(token)
+        #with open('token.txt', 'w') as file:
+        #    file.write(token)
+        writeInFile('token.txt',token)
         return token
 
 
@@ -32,5 +38,5 @@ def revokeTokenLeekwars(token):
 
 
 def request_api(address_api,token):
-    data_out_getSoloChallenge = requests.get(address_api,headers={'Content-Type': 'application/json','Authorization': 'Bearer {}'.format(token),"Cookie": "PHPSESSID=" + str(randint(0, 1000))})
-    return json.loads(data_out_getSoloChallenge.content.decode('utf-8'))
+    data_out_request_api = requests.get(address_api,headers={'Content-Type': 'application/json','Authorization': 'Bearer {}'.format(token),"Cookie": "PHPSESSID=" + str(randint(0, 1000))})
+    return json.loads(data_out_request_api.content.decode('utf-8'))
