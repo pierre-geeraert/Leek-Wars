@@ -10,10 +10,18 @@ password_leekwars_global = readCredential(PathCredential, "password")
 token_global=TokenLeekwars(id_leekwars_global,password_leekwars_global)
 
 
+# opponents1 = ""
+# opponents2 = ""
+# opponents3 = ""
+# opponents4 = ""
+# opponents5 = ""
+# data_out = ""
 
-# print(getFarmerOpponents(token_global))
-# print(getSoloChallenge(leek_id,token_global))
-
-tab=[1,2,3]
-print(type(tab))
-
+data_out,opponents1,opponents2,opponents3,opponents4,opponents5 = getFarmerOpponents(token_global)
+print(data_out)
+print(opponents1)
+print(opponents2)
+print(opponents3)
+print(opponents4)
+print(opponents5)
+#print(getFarmerOpponents(token_global))
