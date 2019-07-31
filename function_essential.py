@@ -1,4 +1,5 @@
 import json
+import time
 import os
 import requests
 from random import randint
@@ -23,7 +24,6 @@ def TokenLeekwars(id_leek, passwd_leek):
         return file_token
     else:
         data_out_TokenLeekwars = requests.post("https://leekwars.com/api/farmer/login-token", data={'login': id_leek, 'password': passwd_leek})
-#        token = r.json()['token']
         token = data_out_TokenLeekwars.json()['token']
         #with open('token.txt', 'w') as file:
         #    file.write(token)
@@ -40,3 +40,18 @@ def revokeTokenLeekwars(token):
 def request_api(address_api,token):
     data_out_request_api = requests.get(address_api,headers={'Content-Type': 'application/json','Authorization': 'Bearer {}'.format(token),"Cookie": "PHPSESSID=" + str(randint(0, 1000))})
     return json.loads(data_out_request_api.content.decode('utf-8'))
+
+
+def test(file):
+    file=2
+    return 0
+
+# def getTimeExecution(function):
+#     time_begin=time.time()
+#     data_out_getTimeExecution=function
+#     time_end=time.time()
+#     execution_time=time_end-time_begin
+#     print(data_out_getTimeExecution)
+#     print('{:f}'.format(execution_time))
+#     print("execution_time = "+str(execution_time)+" seconds")
+#     return execution_time
