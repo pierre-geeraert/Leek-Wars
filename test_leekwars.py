@@ -35,7 +35,7 @@ class leekwars_test(unittest.TestCase):
 
     def test_getFarmerOpponents(self):
         start_time=time.time()
-        data_out_test_getFarmerOpponents=garden.getFarmerOpponents(leek_wars.token_global)
+        data_out_test_getFarmerOpponents=garden.getLeekOpponents(leek_wars.token_global)
         end_time=time.time()
         execution_time=end_time-start_time
         print("execution_time = "+str(execution_time))
@@ -46,6 +46,18 @@ class leekwars_test(unittest.TestCase):
         self.assertEqual(str(type(data_out_test_getFarmerOpponents)), "<class 'dict'>")
 
 
+    def test_fight(self):
+        start_time = time.time()
+
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print("execution_time = " + str(execution_time))
+        # test if function execution time less than 1 second
+        self.assertEqual(execution_time < 1, True)
+
+        """lancer un combat
+        retourner valeur du combat
+        """
 
 if __name__ == '__main__':
     unittest.main()

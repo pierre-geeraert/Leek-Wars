@@ -2,6 +2,7 @@ import json
 import time
 import os
 import requests
+import globalVar
 from random import randint
 
 
@@ -37,14 +38,13 @@ def revokeTokenLeekwars(token):
     return data_out_revoke
 
 
-def request_api(address_api,token):
-    data_out_request_api = requests.get(address_api,headers={'Content-Type': 'application/json','Authorization': 'Bearer {}'.format(token),"Cookie": "PHPSESSID=" + str(randint(0, 1000))})
+def request_api(address_api):
+    try:
+        data_out_request_api = requests.get(address_api, headers=globalVar.header)
+    except:
+        print("request impossible for request_api")
     return json.loads(data_out_request_api.content.decode('utf-8'))
 
-
-def test(file):
-    file=2
-    return 0
 
 # def getTimeExecution(function):
 #     time_begin=time.time()
